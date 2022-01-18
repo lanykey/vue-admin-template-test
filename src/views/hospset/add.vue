@@ -25,16 +25,16 @@
             <el-button type="primary" @click="saveOrUpdate">保存</el-button>
          </el-form-item>
       </el-form>
-
    </div>
 </template>
+
 <script>
 import hospset from '@/api/hospset'
 
 export default {
    data() {
       return {
-         hospitalSet:{} 
+         hospitalSet:{} //由于页面的列表中有双向绑定hospitalSet这个属性，然后此处是要返回这个集合的！
       }
    },
    created() {//页面渲染之前执行
@@ -42,7 +42,8 @@ export default {
       //调用接口得到医院设置信息
       if(this.$route.params && this.$route.params.id) {
          const id = this.$route.params.id
-         this.getHostSet(id)
+         // alert(id);
+         this.getHostSet(id) //调用api接口中的hospset.js的getHostSet方法
       } else {
          //表单数据清空
          this.hospitalSet = {}
@@ -53,6 +54,7 @@ export default {
       getHostSet(id) {
          hospset.getHospSet(id) 
             .then(response => {
+               //此处相当于后端控制中的返回值getHostSet，此处用alert(response.data.id)进行测试，获取的id跟上方alert获取的id是否一致;
                this.hospitalSet = response.data
             })
       },
@@ -65,7 +67,7 @@ export default {
                   type: 'success',
                   message: '添加成功!'
                })
-               //跳转列表页面，使用路由跳转方式实现
+               //跳转列表页面，使用“路由跳转”方式实现
                this.$router.push({path:'/hospSet/list'})
             })
       },

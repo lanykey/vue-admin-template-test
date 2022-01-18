@@ -57,8 +57,8 @@ export const constantRouterMap = [ //创建constantRouterMap 路由·
         meta: { title: '医院设置添加', icon: 'tree' }
       },
       {
-        path: 'edit/:id',
-        name: 'EduTeacherEdit',
+        path: 'edit/:id',//:id中的符号相当于后端的？id进行传值！
+        name: '编辑医院',
         component: () =>import('@/views/hospset/add'),
         meta: { title: '编辑', noCache: true },
         hidden: true
@@ -71,7 +71,7 @@ export const constantRouterMap = [ //创建constantRouterMap 路由·
       },
       {
         path: 'hospital/show/:id',
-        name: '查看',
+        name: '查看医院',
         component: () => import('@/views/hosp/show'),
         meta: { title: '查看', noCache: true },
         hidden: true
